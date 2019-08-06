@@ -446,7 +446,7 @@ class BasePlugin:
                 Domoticz.Log("Alarm is already ACTIVE !")
 
         if self.Alarm:
-            if self.Detectionchangedtime + timedelta(seconds = (self.Alarmondelay + self.Alarmoffdelay) <= now:
+            if self.Detectionchangedtime + timedelta(seconds = (self.Alarmondelay + self.Alarmoffdelay)) <= now:
                 # Reset of the zone detection for checking if new intrusion
                 Domoticz.Log("Alarm reset after timer OFF period !")
                 self.Alarm = False
