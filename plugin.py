@@ -264,7 +264,7 @@ class BasePlugin:
             if Devices[3].nValue == 1:
                 Devices[3].Update(nValue = 0,sValue = Devices[8].sValue)
 
-        if (Devices[1].nValue => 20):  # Surveillance is on
+        if (Devices[1].nValue >= 20):  # Surveillance is on
             if Devices[2].nValue == 1:
                 if Devices[3].nValue == 1:
                     if Devices[5].nValue == 1:
