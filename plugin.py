@@ -641,7 +641,7 @@ def TelegramAPI(APICall):
         else:
             Domoticz.Error("Telegram API: http error = {}".format(response.status))
     except:
-        Domoticz.Error("Error calling '{}'".format(url))
+        Domoticz.Debug("Error calling '{}'".format(url))
     return resultJson
 
 
