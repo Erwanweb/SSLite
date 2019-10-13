@@ -635,7 +635,7 @@ def TelegramAPI(APICall):
         response = request.urlopen(req)
         if response.status == 200:
             resultJson = json.loads(response.read().decode('utf-8'))
-            if resultJson["ok"] != "true":
+            if resultJson["status"] != "true":
                 Domoticz.Error("Telegram API returned an error: status = {}".format(resultJson["ok"]))
                 resultJson = None
         else:
