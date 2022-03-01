@@ -16,8 +16,8 @@ Version:    0.0.1: alpha
     <params>
         <param field="Address" label="Domoticz IP Address" width="200px" required="true" default="127.0.0.1"/>
         <param field="Port" label="Port" width="40px" required="true" default="8080"/>
-        <param field="Username" label="Username" width="200px" required="false" default=""/>
-        <param field="Password" label="Password" width="200px" required="false" default=""/>
+        <param field="ID Telegram Group" label="Username" width="200px" required="false" default=""/>
+        <param field="Sirens" label="Sirens IDX (csv list of idx)" width="200px" required="false" default=""/>
         <param field="Mode1" label="Perimetral door/window Sensors (csv list of idx)" width="200px" required="false" default=""/>
         <param field="Mode2" label="Panic Button (csv list of idx)" width="200px" required="false" default=""/>
         <param field="Mode3" label="Night zone MS Sensors (csv list of idx)" width="200px" required="false" default=""/>
