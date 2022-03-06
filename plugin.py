@@ -180,7 +180,7 @@ class BasePlugin:
         if Parameters["Username"] != "":
             self.Telegram = True
 
-        if self.Voice == "1":
+        if self.Voice == 1:
             self.Alexa = True
 
 
