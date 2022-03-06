@@ -180,8 +180,8 @@ class BasePlugin:
         if Parameters["Username"] != "":
             self.Telegram = True
 
-        if self.Voice == "1":
-            self.Telegram = True
+        if self.Voice = 1:
+            self.Alexa = True
 
 
     def onStop(self):
