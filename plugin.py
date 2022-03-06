@@ -633,7 +633,7 @@ class BasePlugin:
                         if self.Telegram:
                             TelegramAPI("Pas d'identification pendant le temps alloue --- ALARME !")
                         if self.Alexa:
-                            AlexaAPI("Vous ne vous zètes pas identifié dans le délai impartie. Je déclenche lalarme"')
+                            AlexaAPI("Vous ne vous zètes pas identifié dans le délai impartie. Je déclenche lalarme")
                     else:
                         Domoticz.Debug("Intrusion Detected : Alarm is INACTIVE but in timer ON period !")
 
