@@ -436,7 +436,7 @@ class BasePlugin:
                                 if self.Telegram:
                                     TelegramAPI("--- DETECTION PERIMETRIQUE: '{}'".format(device["Name"]))
                                 if self.Alexa:
-                                    AlexaAPI("Détéction périmétrique '{}'".format(device["Name"])")
+                                    AlexaAPI("Détéction périmétrique '{}'".format(device["Name"]))
 
 
                     else:
