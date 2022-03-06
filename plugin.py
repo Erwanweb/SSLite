@@ -216,7 +216,7 @@ class BasePlugin:
                     if self.Telegram:
                         TelegramAPI("Protection perimetrique activee - Timer")
                     if self.Telegram:
-                        os.system("sudo /home/pi/script/alexa_remote_control.sh -e speak:"Protection"")
+                        os.system('sudo /home/pi/script/alexa_remote_control.sh -e speak:"Protection"')
                     self.Armingtempo = datetime.now()
 
                 elif (Devices[1].sValue == "30"):
