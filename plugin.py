@@ -312,7 +312,7 @@ class BasePlugin:
                 if self.Alexa:
                     AlexaAPI("Vérification des capteurs de présence. Je vous informerai des que la vérification sera terminé")
                 time.sleep(5)
-                self.verifMS1
+                self.verifMS1()
         #self.onHeartbeat()
 
 
