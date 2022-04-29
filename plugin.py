@@ -460,7 +460,7 @@ class BasePlugin:
                 if Devices[7].nValue == 1:
                     Devices[7].Update(nValue = 0,sValue = Devices[7].sValue)
                     for idx in self.Sirens:
-                        DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=0".format(idx))  # Levels are 0:OFF, 10:flash, 20:siren,30:Alarm, 40:?
+                        DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=0".format(idx))  # Levels are 0:OFF, 10:Alarm, 20:siren,30:Flash, 40:Arm, 50:Disarm
 
 
         else: # At Mini Perimetral Surveillance is on
