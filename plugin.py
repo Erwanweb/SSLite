@@ -179,7 +179,7 @@ class BasePlugin:
 
         # build lists of alarm sensors
         self.Sirens = parseCSV(Parameters["Password"])
-        Domoticz.Debug("Pre-Detection Sensors = {}".format(self.DTPerimetral))
+        Domoticz.Debug("Sirens = {}".format(self.DTPerimetral))
         self.DTpreDet = parseCSV(Parameters["Mode1"])
         Domoticz.Debug("Pre-Detection Sensors = {}".format(self.DTPerimetral))
         self.DTPerimetral = parseCSV(Parameters["Mode2"])
@@ -1080,8 +1080,8 @@ class BasePlugin:
                     Devices[7].Update(nValue = 1,sValue = Devices[7].sValue)
                     Devices[8].Update(nValue = 4,sValue = "--- ALARME ---")
                     for idx in self.Sirens:
-                        DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=30".format(
-                            idx))  # Levels are 0:OFF, 10:flash, 20:siren,30:Alarm, 40:?
+                        DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=10".format(
+                            idx))  # Levels are 0:OFF, 10:Alarm, 20:siren,30:Flash, 40:Arm, 50:Disarm
                     if self.Telegram:
                         TelegramAPI("ALARME !!!")
                 else :
@@ -1097,7 +1097,7 @@ class BasePlugin:
                             time.sleep(5)
                         Devices[7].Update(nValue=1, sValue=Devices[7].sValue)
                         for idx in self.Sirens:
-                            DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=30".format(idx)) # Levels are 0:OFF, 10:flash, 20:siren,30:Alarm, 40:?
+                            DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=10".format(idx)) # Levels are 0:OFF, 10:Alarm, 20:siren,30:Flash, 40:Arm, 50:Disarm
                     else:
                         Domoticz.Debug("Intrusion Detected : Siren is INACTIVE but in timer ON period !")
                         if self.Telegram:
@@ -1126,7 +1126,7 @@ class BasePlugin:
                 Devices[7].Update(nValue = 0,sValue = Devices[7].sValue)
                 Devices[8].Update(nValue = 3,sValue = "RESET - Protection Armee")
                 for idx in self.Sirens:
-                    DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=0".format(idx))  # Levels are 0:OFF, 10:flash, 20:siren,30:Alarm, 40:?
+                    DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=0".format(idx))  # Levels are 0:OFF, 10:Alarm, 20:siren,30:Flash, 40:Arm, 50:Disarm
 
                 if self.Telegram:
                     TelegramAPI("RESET - Protection Armee")
