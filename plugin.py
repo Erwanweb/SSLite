@@ -1100,6 +1100,8 @@ class BasePlugin:
                             DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=10".format(idx)) # Levels are 0:OFF, 10:Alarm, 20:siren,30:Flash, 40:Arm, 50:Disarm
                     else:
                         Domoticz.Debug("Intrusion Detected : Siren is INACTIVE but in timer ON period !")
+                        for idx in self.Sirens:
+                            DomoticzAPI("type=command&param=switchlight&idx={}&switchcmd=Set Level&level=30".format(idx)) # Levels are 0:OFF, 10:Alarm, 20:siren,30:Flash, 40:Arm, 50:Disarm
                         if self.Telegram:
                             TelegramAPI("INTRUSION DETECTEE - IDENTIFICATION REQUISE")
                         if self.Alexa:
