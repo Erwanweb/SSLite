@@ -642,7 +642,7 @@ class BasePlugin:
                             # PerimetralDT[idx] = True if device["Status"] == "On" else False
                             Domoticz.Debug(
                                 "Verif : PS Sensor idx {}, '{}' currently is '{}'".format(idx, device["Name"], device["Status"]))
-                            if device["Status"] != "Off" :
+                            if not device["Status"] == "Off" or device["Status"] == "closed":
                                 Devices[8].Update(nValue=3, sValue="Verif PS en cours : --- '{}' - '{}'".format(device["Name"], device["Status"]))
                                 self.DTtempoPS = datetime.now()
                                 if self.Telegram:
@@ -878,7 +878,7 @@ class BasePlugin:
                     if "Status" in device:
                         PerimetralDT[idx] = True if device["Status"] == "On" else False
                         Domoticz.Debug("Perimetral DT switch idx {}, '{}' currently is '{}'".format(idx,device["Name"],device["Status"]))
-                        if device["Status"] != "Off" :
+                        if not device["Status"] == "Off" or device["Status"] == "closed":
                             self.Perimetraltempo = datetime.now()
                             if Devices[2].nValue == 1:
                                 Devices[8].Update(nValue = 3,sValue = "--- DETECTION PERIMETRIQUE: '{}'".format(device["Name"]))
