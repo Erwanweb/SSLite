@@ -644,11 +644,11 @@ class BasePlugin:
                             # PerimetralDT[idx] = True if device["Status"] == "On" else False
                             Domoticz.Debug(
                                 "Verif : PS Sensor idx {}, '{}' currently is '{}'".format(idx, device["Name"], device["Status"]))
-                            if not device["Status"] == "Off" 
-                               if not device["Status"] == "Closed":
+                            if not device["Status"] == "Off" :
+                                if not device["Status"] == "Closed" :
                                     self.PSactif = True
-                            if not device["Status"] == "Closed" 
-                               if not device["Status"] == "Off":
+                            if not device["Status"] == "Closed" :
+                                if not device["Status"] == "Off":
                                     self.PSactif = True                                    
                             if self.PSactif :
                                 Devices[8].Update(nValue=3, sValue="Verif PS en cours : --- '{}' - '{}'".format(device["Name"], device["Status"]))
@@ -887,10 +887,10 @@ class BasePlugin:
                     if "Status" in device:
                         PerimetralDT[idx] = True if device["Status"] == "On" else False
                         Domoticz.Debug("Perimetral DT switch idx {}, '{}' currently is '{}'".format(idx,device["Name"],device["Status"]))
-                        if not device["Status"] == "Off" 
-                            if not device["Status"] == "Closed":
+                        if not device["Status"] == "Off" :
+                            if not device["Status"] == "Closed" :
                                 self.PSactif = True
-                        if not device["Status"] == "Closed" 
+                        if not device["Status"] == "Closed" :
                             if not device["Status"] == "Off":
                                 self.PSactif = True                                    
                         if self.PSactif :
