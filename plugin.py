@@ -102,6 +102,7 @@ class BasePlugin:
         self.VerificationPSInFunction = False
         self.VerificationMS1InFunction = False
         self.VerificationMS2InFunction = False
+        self.actif = False
         self.Telegram = False
         self.Alexa = False
         self.VoiceLevelNormal = False
@@ -613,6 +614,7 @@ class BasePlugin:
         now = datetime.now()
 
         self.VerificationPSInFunction = True
+        self.actif = False
 
         Domoticz.Log("--- Verification of PS Called...")
         params = parseCSV(Parameters["Mode2"])
@@ -642,7 +644,13 @@ class BasePlugin:
                             # PerimetralDT[idx] = True if device["Status"] == "On" else False
                             Domoticz.Debug(
                                 "Verif : PS Sensor idx {}, '{}' currently is '{}'".format(idx, device["Name"], device["Status"]))
-                            if not device["Status"] == "Off" or not device["Status"] == "Closed":
+                            if not device["Status"] == "Off" 
+                               if not device["Status"] == "Closed":
+                                    self.actif = True
+                            if not device["Status"] == "Closed" 
+                               if not device["Status"] == "Off":
+                                    self.actif = True                                    
+                            if self.actif :
                                 Devices[8].Update(nValue=3, sValue="Verif PS en cours : --- '{}' - '{}'".format(device["Name"], device["Status"]))
                                 self.DTtempoPS = datetime.now()
                                 if self.Telegram:
@@ -878,7 +886,13 @@ class BasePlugin:
                     if "Status" in device:
                         PerimetralDT[idx] = True if device["Status"] == "On" else False
                         Domoticz.Debug("Perimetral DT switch idx {}, '{}' currently is '{}'".format(idx,device["Name"],device["Status"]))
-                        if not device["Status"] == "Off" or not device["Status"] == "Closed":
+                        if not device["Status"] == "Off" 
+                            if not device["Status"] == "Closed":
+                                self.actif = True
+                        if not device["Status"] == "Closed" 
+                            if not device["Status"] == "Off":
+                                self.actif = True                                    
+                        if self.actif :
                             self.Perimetraltempo = datetime.now()
                             if Devices[2].nValue == 1:
                                 Devices[8].Update(nValue = 3,sValue = "--- DETECTION PERIMETRIQUE: '{}'".format(device["Name"]))
