@@ -102,7 +102,7 @@ class BasePlugin:
         self.VerificationPSInFunction = False
         self.VerificationMS1InFunction = False
         self.VerificationMS2InFunction = False
-        self.actif = False
+        self.PSactif = False
         self.Telegram = False
         self.Alexa = False
         self.VoiceLevelNormal = False
@@ -614,7 +614,7 @@ class BasePlugin:
         now = datetime.now()
 
         self.VerificationPSInFunction = True
-        self.actif = False
+        self.PSactif = False
 
         Domoticz.Log("--- Verification of PS Called...")
         params = parseCSV(Parameters["Mode2"])
@@ -646,11 +646,11 @@ class BasePlugin:
                                 "Verif : PS Sensor idx {}, '{}' currently is '{}'".format(idx, device["Name"], device["Status"]))
                             if not device["Status"] == "Off" 
                                if not device["Status"] == "Closed":
-                                    self.actif = True
+                                    self.PSactif = True
                             if not device["Status"] == "Closed" 
                                if not device["Status"] == "Off":
-                                    self.actif = True                                    
-                            if self.actif :
+                                    self.PSactif = True                                    
+                            if self.PSactif :
                                 Devices[8].Update(nValue=3, sValue="Verif PS en cours : --- '{}' - '{}'".format(device["Name"], device["Status"]))
                                 self.DTtempoPS = datetime.now()
                                 if self.Telegram:
@@ -873,6 +873,7 @@ class BasePlugin:
     def PerimetralDetection(self):
 
         now = datetime.now()
+        self.PSactif = False
 
         Domoticz.Log("Perimetral Detection called...")
 
@@ -888,14 +889,15 @@ class BasePlugin:
                         Domoticz.Debug("Perimetral DT switch idx {}, '{}' currently is '{}'".format(idx,device["Name"],device["Status"]))
                         if not device["Status"] == "Off" 
                             if not device["Status"] == "Closed":
-                                self.actif = True
+                                self.PSactif = True
                         if not device["Status"] == "Closed" 
                             if not device["Status"] == "Off":
-                                self.actif = True                                    
-                        if self.actif :
+                                self.PSactif = True                                    
+                        if self.PSactif :
                             self.Perimetraltempo = datetime.now()
                             if Devices[2].nValue == 1:
                                 Devices[8].Update(nValue = 3,sValue = "--- DETECTION PERIMETRIQUE: '{}'".format(device["Name"]))
+                                self.PSactif = False
                                 #if self.Telegram:
                                     #TelegramAPI("--- DETECTION PERIMETRIQUE: '{}'".format(device["Name"]))
                                 #if self.Alexa:
