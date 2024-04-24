@@ -649,7 +649,7 @@ class BasePlugin:
                 Domoticz.Debug("PS Called with position {} and Idx {} is the last in the PS list !!! ".format(
                     CalledSensorPositionInList, self.CalledSensor))
             # we check the alarm sensor
-            devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+            devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
             if devicesAPI:
                 for device in devicesAPI["result"]:  # parse the perimetral sensors (PS) devices
                     idx = int(device["idx"])
@@ -748,7 +748,7 @@ class BasePlugin:
                 Domoticz.Debug("MS Called with position {} and Idx {} is the last in the MS Group 1 list !!! ".format(
                     CalledSensorPositionInList, self.CalledSensor))
             # we check the alarm sensor
-            devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+            devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
             if devicesAPI:
                 for device in devicesAPI["result"]:  # parse the perimetral sensors (PS) devices
                     idx = int(device["idx"])
@@ -843,7 +843,7 @@ class BasePlugin:
                 Domoticz.Debug("MS Called with position {} and Idx {} is the last in the MS Groupe 2 list !!! ".format(
                     CalledSensorPositionInList, self.CalledSensor))
             # we check the alarm sensor
-            devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+            devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
             if devicesAPI:
                 for device in devicesAPI["result"]:  # parse the perimetral sensors (PS) devices
                     idx = int(device["idx"])
@@ -920,7 +920,7 @@ class BasePlugin:
 
         # Build list of Perimetral switches, with their current status
         PerimetralDT = {}
-        devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+        devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
         if devicesAPI:
             for device in devicesAPI["result"]:  # parse the presence/motion sensors (DT) device
                 idx = int(device["idx"])
@@ -998,7 +998,7 @@ class BasePlugin:
 
         # Build list of Alarm sensor (switches), with their current status
         NightAlarmDT = {}
-        devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+        devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
         if devicesAPI:
             for device in devicesAPI["result"]:  # parse the presence/motion sensors (switch) device
                 idx = int(device["idx"])
@@ -1078,7 +1078,7 @@ class BasePlugin:
 
         # Build list of Alarm sensor (switches), with their current status
         NormalAlarmDT = {}
-        devicesAPI = DomoticzAPI("type=devices&filter=light&used=true&order=Name")
+        devicesAPI = DomoticzAPI("type=command&param=getdevices&filter=light&used=true&order=Name")
         if devicesAPI:
             for device in devicesAPI["result"]:  # parse the presence/motion sensors (switch) device
                 idx = int(device["idx"])
