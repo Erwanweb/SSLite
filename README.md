@@ -25,10 +25,6 @@ Upgrade :
 
 cd ~/domoticz/plugins/SSLite
 
-git reset --hard
-
-git pull --force
-
-sudo chmod +x plugin.py
+git reset --hard && git pull --force
 
 sudo /etc/init.d/domoticz.sh restart
