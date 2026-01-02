@@ -1556,13 +1556,15 @@ def AlexaAPI(APICall):
       #time.sleep(1)
 
     # Check last alexa for knowing where speaking :
-    cmd = 'sudo /home/pi/script/alexa_remote_control.sh -lastalexa {} cut -d"=" -f1'.format("|")
+    #cmd = 'sudo /home/pi/script/alexa_remote_control.sh -lastalexa {} cut -d"=" -f1'.format("|")
+    cmd = 'sudo /home/tools/script/alexa_remote_control.sh -lastalexa {} cut -d"=" -f1'.format("|")
     output = sp.getoutput(cmd)
     Domoticz.Debug("Last alexa speaking : {}".format(output))
 
     time.sleep(1)
 
-    cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d {} -e speak:"{}"'.format(output, APICall)
+    #cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d {} -e speak:"{}"'.format(output, APICall)
+    cmd = 'sudo /home/tools/script/alexa_remote_control.sh -d {} -e speak:"{}"'.format(output, APICall)
     Domoticz.Debug("Calling Alexa API: {}".format(cmd))
     os.system(cmd)
 
@@ -1577,7 +1579,8 @@ def AlexaAlarmAPI(APICall):
       #self.VoiceAlarmLevelMax = True
       #time.sleep(1)
 
-    cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d Alarme -e speak:"{}"'.format(APICall)
+    #cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d Alarme -e speak:"{}"'.format(APICall)
+    cmd = 'sudo /home/tools/script/alexa_remote_control.sh -d Alarme -e speak:"{}"'.format(APICall)
     Domoticz.Debug("Calling Alexa Alarme API: {}".format(cmd))
     os.system(cmd)
 
