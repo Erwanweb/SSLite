@@ -255,7 +255,7 @@ class BasePlugin:
         if self.Alexa:
             self.AlexaVolume()
         if self.Alexa:
-            cmd = 'sudo /home/pi/script/alexa_remote_control.sh -lastalexa'
+            cmd = 'sudo /home/tools/script/alexa_remote_control.sh -lastalexa'
             Domoticz.Debug("Starting Alexa API and update cookie if necessary")
             os.system(cmd)
 
@@ -1438,7 +1438,7 @@ class BasePlugin:
     # Check volume of alexa device alarm group
         if self.Intrusion :
             if not self.VoiceAlarmLevelMax :
-                cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d Alarme -e vol:100'
+                cmd = 'sudo /home/tools/script/alexa_remote_control.sh -d ALL -e vol:100'
                 Domoticz.Debug("Calling Alexa Alarme API: {}".format(cmd))
                 os.system(cmd)
                 self.VoiceLevelNormal = False
@@ -1446,7 +1446,7 @@ class BasePlugin:
                 time.sleep(1)
         else :
             if not self.VoiceLevelNormal:
-                cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d Alarme -e vol:30'
+                cmd = 'sudo /home/tools/script/alexa_remote_control.sh -d ALL -e vol:30'
                 Domoticz.Debug("Calling Alexa Alarme API: {}".format(cmd))
                 os.system(cmd)
                 self.VoiceLevelNormal = True
@@ -1572,7 +1572,7 @@ def AlexaAPI(APICall):
 def AlexaAlarmAPI(APICall):
 
     #if self.VoiceLevelNormal :
-      #cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d Alarme -e vol:100'
+      #cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d ALL -e vol:100'
       #Domoticz.Debug("Calling Alexa Alarme API: {}".format(cmd))
       #os.system(cmd)
       #self.VoiceLevelNormal = False
@@ -1580,7 +1580,7 @@ def AlexaAlarmAPI(APICall):
       #time.sleep(1)
 
     #cmd = 'sudo /home/pi/script/alexa_remote_control.sh -d Alarme -e speak:"{}"'.format(APICall)
-    cmd = 'sudo /home/tools/script/alexa_remote_control.sh -d Alarme -e speak:"{}"'.format(APICall)
+    cmd = 'sudo /home/tools/script/alexa_remote_control.sh -d ALL -e speak:"{}"'.format(APICall)
     Domoticz.Debug("Calling Alexa Alarme API: {}".format(cmd))
     os.system(cmd)
 
