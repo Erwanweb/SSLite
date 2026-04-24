@@ -11,7 +11,7 @@ Version:    0.0.1: alpha
             2.1.7: adding feedback widget for Keypad
 """
 """
-<plugin key="SSLite" name="AC Security system LITE" author="Erwanweb" version="2.1.5" externallink="https://github.com/Erwanweb/SSLite.git">
+<plugin key="SSLite" name="AC Security system LITE" author="Erwanweb" version="2.1.7" externallink="https://github.com/Erwanweb/SSLite.git">
     <description>
         <h2>Security system Lite V2.1.7</h2><br/>
         Security system with Telegram message services and Alexa control and feedback<br/>
@@ -1392,7 +1392,7 @@ class BasePlugin:
                         break
             if novar:
                 # create user variable since it does not exist
-                self.WriteLog("User Variable {} does not exist. Creation requested".format(varname), "Verbose")
+                Domoticz.Log("User Variable {} does not exist. Creation requested".format(varname))
 
                 # check for Domoticz version:
                 # there is a breaking change on dzvents_version 2.4.9, API was changed from 'saveuservariable' to 'adduservariable'
@@ -1405,7 +1405,7 @@ class BasePlugin:
                     Domoticz.Error("Unable to fetch Domoticz info... unable to determine version")
                 else:
                     if domoticzInfo and LooseVersion(domoticzInfo["dzvents_version"]) >= LooseVersion("2.4.9"):
-                        self.WriteLog("Use 'adduservariable' instead of 'saveuservariable'", "Verbose")
+                        Domoticz.Log("Use 'adduservariable' instead of 'saveuservariable'")
                         parameter = "adduservariable"
 
                 # actually calling Domoticz API
