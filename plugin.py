@@ -15,8 +15,8 @@ Version:    0.0.1: alpha
 <plugin key="SSLite" name="AC Security system LITE" author="Erwanweb" version="2.1.8" externallink="https://github.com/Erwanweb/SSLite.git">
     <description>
         <h2>Security system Lite V2.1.8</h2><br/>
-        Security system with Telegram message services and Alexa control and feedback<br/>
-        <h3>Set-up and Configuration</h3>
+        Security system with Telegram and Pushover message services, Alexa control and feedback for keypad<br/>
+        <br/><h3>Set-up and Configuration</h3><br/>
     </description>
     <params>
         <param field="Username" label="Telegram Chat ID, Pushover User Key (0 si aucun)" width="600px" required="false" default="0,0"/>
