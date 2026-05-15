@@ -1512,7 +1512,7 @@ def NotifyAlert(message):
     NotifyAPI(
         message,
         priority=2,
-        sound="siren"
+        sound="persistent"
     )
 
 def NotifyStatus(message):
