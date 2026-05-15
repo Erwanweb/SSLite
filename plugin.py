@@ -9,16 +9,18 @@ Version:    0.0.1: alpha
             2.1.5: Telegram bot change
             2.1.6: Timer on detection
             2.1.7: adding feedback widget for Keypad
+            2.1.8: adding Pushover notif
 """
 """
-<plugin key="SSLite" name="AC Security system LITE" author="Erwanweb" version="2.1.7" externallink="https://github.com/Erwanweb/SSLite.git">
+<plugin key="SSLite" name="AC Security system LITE" author="Erwanweb" version="2.1.8" externallink="https://github.com/Erwanweb/SSLite.git">
     <description>
-        <h2>Security system Lite V2.1.7</h2><br/>
+        <h2>Security system Lite V2.1.8</h2><br/>
         Security system with Telegram message services and Alexa control and feedback<br/>
         <h3>Set-up and Configuration</h3>
     </description>
     <params>
-        <param field="Username" label="ID Telegram Group" width="100px" required="false" default=""/>
+        <param field="Username" label="Telegram Chat ID, Pushover User Key (0 si aucun)" width="600px" required="false" default="0,0"/>
+        <param field="Address" label="Telegram Bot Token, Pushover App Token (0 si aucun)" width="600px" required="false" default="0,0"/>
         <param field="Password" label="Sirens with 5 levels (list of idx)" width="200px" required="false" default=""/>
         <param field="Mode1" label="Pre-detection Sensors (list of idx)" width="400px" required="false" default=""/>
         <param field="Mode2" label="Perimetral doors/windows Sensors (list of idx)" width="400px" required="false" default=""/>
@@ -110,7 +112,12 @@ class BasePlugin:
         self.VerificationMS2InFunction = False
         self.PSactif = False
         self.Telegram = False
+        self.Pushover = False  
         self.Alexa = False
+        self.TelegramChatId = "0"
+        self.TelegramToken = "0"
+        self.PushoverUserKey = "0"
+        self.PushoverAppToken = "0"   
         self.VoiceLevelNormal = False
         self.VoiceAlarmLevelMax = False
         self.loglevel = None
@@ -229,8 +236,25 @@ class BasePlugin:
         Domoticz.Debug("SS Lite plugin is just now restarting")
         self.LastCommand = datetime.now()
 
-        if Parameters["Username"] != "":
-            self.Telegram = True
+        # Telegram et pushover on or none
+        msg_users = parseTextCSV(Parameters["Username"])
+        msg_tokens = parseTextCSV(Parameters["Address"])
+            
+        if len(msg_users) >= 1:
+            self.TelegramChatId = msg_users[0]
+        if len(msg_users) >= 2:
+            self.PushoverUserKey = msg_users[1]
+            
+        if len(msg_tokens) >= 1:
+            self.TelegramToken = msg_tokens[0]
+        if len(msg_tokens) >= 2:
+            self.PushoverAppToken = msg_tokens[1]
+            
+        self.Telegram = self.TelegramChatId not in ("", "0") and self.TelegramToken not in ("", "0")
+        self.Pushover = self.PushoverUserKey not in ("", "0") and self.PushoverAppToken not in ("", "0")
+            
+        Domoticz.Log("Telegram enabled: {}".format(self.Telegram))
+        Domoticz.Log("Pushover enabled: {}".format(self.Pushover))
 
         if self.Voice == 1:
             self.Alexa = True
@@ -1486,6 +1510,13 @@ def parseCSV(strCSV):
             listvals.append(val)
     return listvals
 
+def parseTextCSV(strCSV):
+    values = []
+    for value in strCSV.split(","):
+        value = value.strip()
+        if value != "":
+            values.append(value)
+    return values
 
 def DomoticzAPI(APICall):
     resultJson = None
